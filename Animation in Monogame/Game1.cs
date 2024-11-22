@@ -1,21 +1,27 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Animation_in_Monogame
 {
 
-    enum Screen
-    {
-        Intro, 
-        TribbleYard
-    }
-
+    
     public class Game1 : Game
     {
+        enum Screen
+        {
+            Intro, 
+            Outro,
+            TribbleYard
+        }
+        Screen screen;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         Rectangle window;
+
+        SoundEffect explode;
 
         Texture2D backroundTexture;
 
@@ -36,10 +42,11 @@ namespace Animation_in_Monogame
         Vector2 orangeTribbleSpeed;
 
         Texture2D introBackround;
-        Texture2D
+
+        Texture2D outroBackround;
 
 
-        Screen screen;
+        
 
         MouseState mouseState;
 
@@ -67,7 +74,7 @@ namespace Animation_in_Monogame
             greyTribbleSpeed = new Vector2 (4, 4);
             greyTribbleRect = new Rectangle(300, 10, 100, 100);
 
-            orangeTribbleSpeed = new Vector2 (10, -60);
+            orangeTribbleSpeed = new Vector2 (50, -60);
             orangeTribbleRect = new Rectangle(500, 80, 150, 150);
 
 
@@ -87,11 +94,13 @@ namespace Animation_in_Monogame
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             introBackround = Content.Load<Texture2D>("introBackround");
+            outroBackround = Content.Load<Texture2D>("outroBackround");
             backroundTexture = Content.Load<Texture2D>("Star Trek backround");
             brownTribbleTexture = Content.Load<Texture2D>("tribbleBrown");
             creamTribbleTexture = Content.Load<Texture2D>("tribbleCream");
             greyTribbleTexture = Content.Load<Texture2D>("tribbleGrey");
             orangeTribbleTexture = Content.Load<Texture2D>("tribbleOrange");
+            explode = Content.Load<SoundEffect>("explosion");
 
             // TODO: use this.Content to load your game content here
         }
@@ -149,7 +158,18 @@ namespace Animation_in_Monogame
                     orangeTribbleSpeed.X *= -1;
                 if (orangeTribbleRect.Bottom > window.Height || orangeTribbleRect.Top < 0)
                     orangeTribbleSpeed.Y *= -1;
+                
+                // Outro Backround
+                if (mouseState.RightButton == ButtonState.Pressed)
+                {
+                    screen = Screen.Outro;
+                }
+                if (mouseState.RightButton == ButtonState.Pressed)
+                {
+                    explode.Play();
+                }
             }
+            
 
 
 
@@ -181,6 +201,11 @@ namespace Animation_in_Monogame
                 _spriteBatch.Draw(greyTribbleTexture, greyTribbleRect, Color.White);
 
                 _spriteBatch.Draw(orangeTribbleTexture, orangeTribbleRect, Color.White);
+            }
+            if (screen == Screen.Outro)
+            {
+                _spriteBatch.Draw(outroBackround, window, Color.White);
+                
             }
             _spriteBatch.End();
 
