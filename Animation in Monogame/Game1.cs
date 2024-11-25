@@ -45,7 +45,8 @@ namespace Animation_in_Monogame
 
         Texture2D outroBackround;
 
-
+        SpriteFont starTrekFont;
+       
         
 
         MouseState mouseState;
@@ -93,6 +94,7 @@ namespace Animation_in_Monogame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            starTrekFont = Content.Load<SpriteFont>("starTrekFont");
             introBackround = Content.Load<Texture2D>("introBackround");
             outroBackround = Content.Load<Texture2D>("outroBackround");
             backroundTexture = Content.Load<Texture2D>("Star Trek backround");
@@ -189,6 +191,7 @@ namespace Animation_in_Monogame
             if (screen == Screen.Intro)
             {
                 _spriteBatch.Draw(introBackround, window, Color.White);
+                _spriteBatch.DrawString(starTrekFont, "Fonts Rule", new Vector2(400, 300), Color.White);
             }
             else if (screen == Screen.TribbleYard)
             {

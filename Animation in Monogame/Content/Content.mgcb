@@ -55,6 +55,16 @@
 /processorParam:TextureFormat=Color
 /build:Star Trek backround.png
 
+#begin starTrekFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:starTrekFont.spritefont
+
+#begin Startrekfuture-EK6e.ttf
+/copy:Startrekfuture-EK6e.ttf
+
 #begin tribbleBrown.png
 /importer:TextureImporter
 /processor:TextureProcessor
