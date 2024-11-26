@@ -46,6 +46,7 @@ namespace Animation_in_Monogame
         Texture2D outroBackround;
 
         SpriteFont starTrekFont;
+        SpriteFont comicalExpFont;
        
         
 
@@ -94,6 +95,7 @@ namespace Animation_in_Monogame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            comicalExpFont = Content.Load <SpriteFont>("comicExpFont");
             starTrekFont = Content.Load<SpriteFont>("starTrekFont");
             introBackround = Content.Load<Texture2D>("introBackround");
             outroBackround = Content.Load<Texture2D>("outroBackround");
@@ -191,10 +193,12 @@ namespace Animation_in_Monogame
             if (screen == Screen.Intro)
             {
                 _spriteBatch.Draw(introBackround, window, Color.White);
-                _spriteBatch.DrawString(starTrekFont, "Fonts Rule", new Vector2(400, 300), Color.White);
+                _spriteBatch.DrawString(starTrekFont, "  OH NO WERE CRASHING AND THE TRIBBLES ARE ESCAPING \n             LOOK AT THEM GO. \n           Please press LEFT CLICK.", new Vector2(50, 200), Color.Cyan);
             }
             else if (screen == Screen.TribbleYard)
             {
+                _spriteBatch.DrawString(comicalExpFont, "AHHHHHHHHHHHHHH", new Vector2(50, 200), Color.White);
+
                 _spriteBatch.Draw(backroundTexture, new Vector2(0, 0), Color.White);
 
                 _spriteBatch.Draw(brownTribbleTexture, brownTribbleRect, Color.White);
