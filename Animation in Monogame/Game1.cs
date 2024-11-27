@@ -79,6 +79,9 @@ namespace Animation_in_Monogame
             orangeTribbleSpeed = new Vector2 (50, -60);
             orangeTribbleRect = new Rectangle(500, 80, 150, 150);
 
+       
+
+
 
             screen = Screen.Intro;
 
@@ -167,13 +170,48 @@ namespace Animation_in_Monogame
                 if (mouseState.RightButton == ButtonState.Pressed)
                 {
                     screen = Screen.Outro;
-                }
-                if (mouseState.RightButton == ButtonState.Pressed)
-                {
                     explode.Play();
+                    brownTribbleSpeed = new Vector2(0, 8);
+                    brownTribbleRect = new Rectangle(50, 100, 200, 200);
+
+                    creamTribbleSpeed = new Vector2(8, 3);
+                    creamTribbleRect = new Rectangle(50, 100, 100, 100);
+
+
+                    greyTribbleSpeed = new Vector2(4, 7);
+                    greyTribbleRect = new Rectangle(50, 100, 100, 100);
+
+                    orangeTribbleSpeed = new Vector2(50, -20);
+                    orangeTribbleRect = new Rectangle(50, 100, 150, 150);
                 }
+                
             }
-            
+            else if (screen == Screen.Outro)
+            {
+
+                //Brown Tribble
+                brownTribbleRect.X += (int)brownTribbleSpeed.X;
+                brownTribbleRect.Y += (int)brownTribbleSpeed.Y;
+                
+
+                //Cream Tribble
+                creamTribbleRect.X += (int)creamTribbleSpeed.X;
+                creamTribbleRect.Y += (int)creamTribbleSpeed.Y;
+               
+
+
+                // Grey Tribble
+                greyTribbleRect.X += (int)greyTribbleSpeed.X;
+                greyTribbleRect.Y += (int)greyTribbleSpeed.Y;
+
+
+                // Orange Tribble
+                orangeTribbleRect.X += (int)orangeTribbleSpeed.X;
+                orangeTribbleRect.Y += (int)orangeTribbleSpeed.Y;
+
+                
+            }
+
 
 
 
@@ -197,8 +235,7 @@ namespace Animation_in_Monogame
             }
             else if (screen == Screen.TribbleYard)
             {
-                _spriteBatch.DrawString(comicalExpFont, "AHHHHHHHHHHHHHH", new Vector2(50, 200), Color.White);
-
+                
                 _spriteBatch.Draw(backroundTexture, new Vector2(0, 0), Color.White);
 
                 _spriteBatch.Draw(brownTribbleTexture, brownTribbleRect, Color.White);
@@ -208,11 +245,20 @@ namespace Animation_in_Monogame
                 _spriteBatch.Draw(greyTribbleTexture, greyTribbleRect, Color.White);
 
                 _spriteBatch.Draw(orangeTribbleTexture, orangeTribbleRect, Color.White);
+
+                _spriteBatch.DrawString(comicalExpFont, "       AHHHHHHHHHHHHHH \n Please press right click", new Vector2(100, 50), Color.White);
             }
             if (screen == Screen.Outro)
             {
                 _spriteBatch.Draw(outroBackround, window, Color.White);
-                
+
+                _spriteBatch.Draw(brownTribbleTexture, brownTribbleRect, Color.White);
+
+                _spriteBatch.Draw(creamTribbleTexture, creamTribbleRect, Color.White);
+
+                _spriteBatch.Draw(greyTribbleTexture, greyTribbleRect, Color.White);
+
+                _spriteBatch.Draw(orangeTribbleTexture, orangeTribbleRect, Color.White);
             }
             _spriteBatch.End();
 
