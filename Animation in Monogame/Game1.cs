@@ -47,9 +47,13 @@ namespace Animation_in_Monogame
 
         SpriteFont starTrekFont;
         SpriteFont comicalExpFont;
-       
-        
 
+        Texture2D exitButtonTexture;
+        Rectangle exitButtonRect;
+
+
+
+        MouseState prevMouseState;
         MouseState mouseState;
 
 
@@ -79,7 +83,9 @@ namespace Animation_in_Monogame
             orangeTribbleSpeed = new Vector2 (50, -60);
             orangeTribbleRect = new Rectangle(500, 80, 150, 150);
 
-       
+            exitButtonRect = new Rectangle(10, 10, 200, 80);
+
+
 
 
 
@@ -98,6 +104,7 @@ namespace Animation_in_Monogame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            exitButtonTexture = Content.Load<Texture2D>("ExitButton");
             comicalExpFont = Content.Load <SpriteFont>("comicExpFont");
             starTrekFont = Content.Load<SpriteFont>("starTrekFont");
             introBackround = Content.Load<Texture2D>("introBackround");
@@ -114,10 +121,19 @@ namespace Animation_in_Monogame
 
         protected override void Update(GameTime gameTime)
         {
-
+            prevMouseState = mouseState;
             mouseState = Mouse.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (mouseState.LeftButton == ButtonState.Pressed &&
+                 prevMouseState.LeftButton == ButtonState.Released)
+            {
+                if (exitButtonRect.Contains(mouseState.Position))
+                    Exit();
+
+            }
+
 
             //Backround
             if (screen == Screen.Intro)
@@ -171,18 +187,18 @@ namespace Animation_in_Monogame
                 {
                     screen = Screen.Outro;
                     explode.Play();
-                    brownTribbleSpeed = new Vector2(0, 8);
-                    brownTribbleRect = new Rectangle(50, 100, 200, 200);
+                    brownTribbleSpeed = new Vector2(01, -80);
+                    brownTribbleRect = new Rectangle(350, 280, 200, 200);
 
-                    creamTribbleSpeed = new Vector2(8, 3);
-                    creamTribbleRect = new Rectangle(50, 100, 100, 100);
+                    creamTribbleSpeed = new Vector2(-38, -30);
+                    creamTribbleRect = new Rectangle(350, 280, 100, 100);
 
 
-                    greyTribbleSpeed = new Vector2(4, 7);
-                    greyTribbleRect = new Rectangle(50, 100, 100, 100);
+                    greyTribbleSpeed = new Vector2(42, -70);
+                    greyTribbleRect = new Rectangle(350, 280, 100, 100);
 
                     orangeTribbleSpeed = new Vector2(50, -20);
-                    orangeTribbleRect = new Rectangle(50, 100, 150, 150);
+                    orangeTribbleRect = new Rectangle(350, 280, 150, 150);
                 }
                 
             }
@@ -259,6 +275,10 @@ namespace Animation_in_Monogame
                 _spriteBatch.Draw(greyTribbleTexture, greyTribbleRect, Color.White);
 
                 _spriteBatch.Draw(orangeTribbleTexture, orangeTribbleRect, Color.White);
+
+                if ()
+
+                _spriteBatch.Draw(exitButtonTexture, exitButtonRect, Color.White);
             }
             _spriteBatch.End();
 
