@@ -83,7 +83,7 @@ namespace Animation_in_Monogame
             orangeTribbleSpeed = new Vector2 (50, -60);
             orangeTribbleRect = new Rectangle(500, 80, 150, 150);
 
-            exitButtonRect = new Rectangle(10, 10, 200, 80);
+            exitButtonRect = new Rectangle(10, 510, 200, 80);
 
 
 
@@ -275,8 +275,6 @@ namespace Animation_in_Monogame
                 _spriteBatch.Draw(greyTribbleTexture, greyTribbleRect, Color.White);
 
                 _spriteBatch.Draw(orangeTribbleTexture, orangeTribbleRect, Color.White);
-
-                if ()
 
                 _spriteBatch.Draw(exitButtonTexture, exitButtonRect, Color.White);
             }
